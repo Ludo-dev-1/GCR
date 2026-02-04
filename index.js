@@ -7,7 +7,7 @@ async function main(api_key) {
     const sectionEl = document.querySelector(".movies");
 
     const upcomingMovies = await getUpcomingMovies(api_key);
-    // console.log(upcomingMovies);
+    console.log(upcomingMovies);
 
     for (const upcomingMovie of upcomingMovies) {
         let titleEl = document.createElement("h3");
@@ -22,12 +22,23 @@ async function main(api_key) {
         releaseDateEl.textContent = upcomingMovie.release_date;
         sectionEl.appendChild(releaseDateEl);
 
+        const movieId = upcomingMovie.id;
 
+        const movieDetails = await getMovieDetails(api_key, movieId);
+
+        const movieGenresParentEl = document.createElement("ul");
+        sectionEl.appendChild(movieGenresParentEl);
         
-    }
+        for (const genre of movieDetails.genres) {
+            const movieGenreEl = document.createElement("li");
+            movieGenreEl.textContent = genre.name;
+            movieGenresParentEl.appendChild(movieGenreEl);
+        }
 
-/* TITRE DU FILM / AFFICHE / DATE DE SORTIE / DUREE / GENRE */
-/* original_title / poster_path / release_date / passage par l'id ? */
+        const movieRuntimeEl = document.createElement("p");
+        movieRuntimeEl.textContent = "Durée : " + movieDetails.runtime + " minutes";
+        sectionEl.appendChild(movieRuntimeEl);        
+    }
 }
 
 async function getUpcomingMovies(api_key) {
@@ -37,4 +48,11 @@ async function getUpcomingMovies(api_key) {
         .then(response => response.results);  
 
     return upcomingMovies;
+}
+
+async function getMovieDetails(api_key, movieId) {
+    const movieDetails = fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${api_key}`)
+        .then(response => response.json());
+    
+    return movieDetails; 
 }
