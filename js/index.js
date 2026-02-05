@@ -50,7 +50,9 @@ async function main(api_key) {
 
 async function getUpcomingMovies(api_key) {
 
-    const upcomingMovies = fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}`)
+    const upcomingMovies = 
+        // fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}&language=fr&page=1&region=fr&language=fr`)
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&include_adult=false&include_video=false&language=fr-FR&page=1&primary_release_date.gte=2026-02-04&region=fr-FR&sort_by=primary_release_date.asc&with_runtime.gte=60`)
         .then(response => response.json())
         .then(response => response.results);  
 

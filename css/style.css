@@ -1,0 +1,82 @@
+html {
+ width: 100vw;
+}
+
+body {
+ font-family: "Playwrite NZ Basic", cursive;
+ font-optical-sizing: auto;
+ font-weight: weight;
+ font-style: normal;
+ margin-left: 1rem;
+ margin-right: 1rem;
+ display: flex;
+ flex-wrap: wrap;
+ width: 90%;
+ margin: 0 auto;
+ background-color: rgb(239, 224, 158);
+
+ header {
+  width: 20%;
+
+  img {
+   width: 100%;
+  }
+
+  h1 {
+   text-align: center;
+  }
+
+  ul {
+   padding: 0;
+  }
+
+  li {
+   list-style-type: none;
+   margin-bottom: 15px;
+   text-align: center;
+  }
+ }
+
+ main {
+  width: 75%;
+  margin: 0 auto;
+  padding-left: 3%;
+  align-items: center;
+
+  .banniere img {
+   width: 70vw;
+  }
+
+  .movies {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 5%;
+
+   h2 {
+    width: 100%;
+    text-align: center;
+   }
+
+   article {
+    width: 45%;
+    height: 20%;
+    border: 1px black solid;
+    border-radius: 10px 10px 10px 10px;
+
+    img {
+     width: 100%;
+     background-position: center;
+     background-size: cover;
+    }
+
+   }
+
+  }
+
+ }
+
+ footer {
+  width: 100%;
+ }
+
+}
