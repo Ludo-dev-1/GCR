@@ -7,24 +7,34 @@ async function main(api_key) {
     console.log(upcomingMovies);
 
     for (const upcomingMovie of upcomingMovies) {
+        const articleEl = document.createElement("article");
+        sectionEl.appendChild(articleEl);
+
         let titleEl = document.createElement("h3");
         titleEl.textContent = upcomingMovie.original_title;
-        sectionEl.appendChild(titleEl);
+        articleEl.appendChild(titleEl);
+
+        let linkEl = document.createElement("a");
+        
+        const movieId = upcomingMovie.id;
+
+        linkEl.href = `movie.html?movie=${movieId}`;
 
         const imageEl = document.createElement("img");
         imageEl.src = "https://image.tmdb.org/t/p/w300/" + upcomingMovie.poster_path;
-        sectionEl.appendChild(imageEl);
+        linkEl.appendChild(imageEl);
+
+        articleEl.appendChild(linkEl);
         
         const releaseDateEl = document.createElement("p");
         releaseDateEl.textContent = upcomingMovie.release_date;
-        sectionEl.appendChild(releaseDateEl);
+        articleEl.appendChild(releaseDateEl);
 
-        const movieId = upcomingMovie.id;
 
         const movieDetails = await getDetailsMovie(api_key, movieId);
 
         const movieGenresParentEl = document.createElement("ul");
-        sectionEl.appendChild(movieGenresParentEl);
+        articleEl.appendChild(movieGenresParentEl);
         
         for (const genre of movieDetails.genres) {
             const movieGenreEl = document.createElement("li");
@@ -34,7 +44,7 @@ async function main(api_key) {
 
         const movieRuntimeEl = document.createElement("p");
         movieRuntimeEl.textContent = "Durée : " + movieDetails.runtime + " minutes";
-        sectionEl.appendChild(movieRuntimeEl);        
+        articleEl.appendChild(movieRuntimeEl);        
     }
 }
 
