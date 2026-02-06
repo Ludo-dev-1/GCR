@@ -50,6 +50,7 @@ body {
   .movies {
    display: flex;
    flex-wrap: wrap;
+   justify-content: space-evenly;
    gap: 5%;
 
    h2 {
@@ -59,14 +60,49 @@ body {
 
    article {
     width: 45%;
-    height: 20%;
+    max-width: 235px;
+    background-clip: border-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     border: 1px black solid;
     border-radius: 10px 10px 10px 10px;
+    height: 60vh;
+    margin-bottom: 5%;
 
-    img {
-     width: 100%;
-     background-position: center;
-     background-size: cover;
+    a {
+     text-decoration: none;
+     color: white;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-evenly;
+     background-color: rgba(0, 0, 0, 0.333);
+     height: inherit;
+    }
+
+    h3 {
+     text-align: center;
+    }
+
+    p {
+     margin-left: 4%;
+    }
+
+    ul {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 5%;
+     margin-left: 4%;
+     padding: 0;
+    }
+
+    li {
+     list-style-type: none;
+     border: 1px white solid;
+     border-radius: 5px;
+     backdrop-filter: blur(4px);
+     padding: 5px 10px;
+     margin-bottom: 5px;
     }
 
    }
